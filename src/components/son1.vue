@@ -3,7 +3,7 @@
     <h1>{{ msg }}, my father is {{fatherName}}</h1>
     <h1>{{fname}}</h1>
     <h1>{{fobj}}</h1>
-    <h1>{{fEvtData}}</h1>
+    <h1>{{fEvt}}</h1>
     <button @click="test">test</button>
   </div>
 </template>
@@ -20,13 +20,19 @@ export default {
       msg: 'i am son1',
       fname: this.fatherName,
       fobj: this.fatherObj,
-      fEvtData: this.fatherEvt
+      fEvt: null
     }
   },
   methods: {
     test: function(){
-      console.log(this.fatherEvt);
-      console.log(this.fEvtData);
+      console.log("this.fatherEvt:",this.fatherEvt);
+      console.log(this.fEvt);
+    }
+  },
+  watch: {
+    fatherEvt: function (val) {   //不知道为什么，只能监视fatherEvt，监听fEvt没用，看不到变化
+      this.fEvt = val
+      console.log("this is son1:",this.fEvt)
     }
   }
 }
